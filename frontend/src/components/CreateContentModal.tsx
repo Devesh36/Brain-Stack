@@ -24,6 +24,23 @@ export default function CreateContentModal({
     setLoading(true);
     setError(null);
 
+    // Title is required
+    if (!title.trim()) {
+      setError("Please enter a title.");
+      setLoading(false);
+      return;
+    }
+
+    // Only validate link if it's not empty
+    if (link.trim()) {
+      const urlPattern = /^(https?:\/\/)[^\s$.?#].[^\s]*$/gm;
+      if (!urlPattern.test(link)) {
+        setError("Please enter a valid URL (e.g., https://example.com).");
+        setLoading(false);
+        return;
+      }
+    }
+
     try {
       await axios.post(`/api/v1/user/content`, { title, link, description });
       // Reset form
@@ -31,14 +48,11 @@ export default function CreateContentModal({
       setLink("");
       setDescription("");
 
-      // Show success toast
       toast.success("Content added successfully!");
 
-      // Refresh content list if callback provided
       if (onContentAdded) {
         onContentAdded();
       }
-      // Auto close modal after successful submission
       onClose();
     } catch (error: unknown) {
       console.error("Error creating content:", error);

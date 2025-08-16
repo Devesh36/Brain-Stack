@@ -7,10 +7,10 @@ import userModel from "../models/user";
 
 
 const createContentSchema = z.object({
-    title: z.string().min(3).max(50),
-    link: z.string().url().max(500).optional(),
-    description: z.string()
-})
+  title: z.string().min(3).max(50),
+  link: z.string().url().max(500).optional().or(z.literal("")),
+  description: z.string()
+});
 
 
 const deleteContentSchema = z.object({

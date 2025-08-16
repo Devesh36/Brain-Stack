@@ -29,7 +29,7 @@ import { NavMain } from "./main-nav";
 const data = {
   user: {
     name: "User",
-    email: "user@mindstack.com",
+    email: "user@brainstack.com",
     avatar: "/avatars/user.jpg",
   },
   navMain: [
@@ -158,7 +158,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Brain className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">MindStack</span>
+                  <span className="truncate font-medium">BrainStack</span>
                   <span className="truncate text-xs">Knowledge Hub</span>
                 </div>
               </a>

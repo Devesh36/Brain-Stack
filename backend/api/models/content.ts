@@ -1,8 +1,8 @@
 import { Schema, Types, model } from "mongoose";
 
 const contentSchema = new Schema({
-    title: { type: String },
-    link: { type: String },
+    title: { type: String , required: true },
+    link: { type: String  , required: false},
     description: { type: String },
     tags: [{ type: Types.ObjectId, ref: "tag" }],
     userId: { type: Types.ObjectId, ref: 'user', required: true }

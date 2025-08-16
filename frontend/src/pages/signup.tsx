@@ -41,6 +41,16 @@ export const SignUp = () => {
     setSuccess("");
     setIsLoading(true);
 
+    // Password validation
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      const errorMessage = "Password should contain at least 1 capital letter, 1 special character, and 1 number";
+      toast.error(errorMessage);
+      setError(errorMessage);
+      setIsLoading(false);
+      return;
+    }
+
     // Validate passwords match
     if (password !== confirmPassword) {
       const errorMessage = "Passwords do not match";
