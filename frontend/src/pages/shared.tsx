@@ -125,7 +125,7 @@ export default function SharedPage() {
             size="sm"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Go to MindStack
+            Go to BrainStack
           </Button>
         </div>
       </div>
@@ -144,7 +144,7 @@ export default function SharedPage() {
               </div>
               <div className="min-w-0 flex-1">
                 <h1 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900 truncate">
-                  {sharedData?.userId?.username || "User"}'s MindStack
+                  {sharedData?.userId?.username || "User"}'s BrainStack
                 </h1>
                 <p className="text-xs sm:text-sm text-gray-500 hidden sm:block">
                   Shared knowledge collection
@@ -252,7 +252,7 @@ export default function SharedPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <div className="text-center text-gray-500 text-xs sm:text-sm">
             <p>
-              Powered by <strong>MindStack</strong> - Organize and share your
+              Powered by <strong>BrainStack</strong> - Organize and share your
               knowledge
             </p>
           </div>

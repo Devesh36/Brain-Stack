@@ -91,7 +91,7 @@ export const SignUp = () => {
         <CardHeader>
           <CardTitle>Create Account</CardTitle>
           <CardDescription>
-            Join MindStack to organize your thoughts
+            Join BrainStack to organize your thoughts
           </CardDescription>
         </CardHeader>
         

@@ -33,13 +33,13 @@ export default function Dashboard() {
         const sharePath = response.data.message;
         console.log(sharePath)
         const fullShareUrl = `${window.location.origin}${sharePath}`;
-        const shareText = `Check out my MindStack collection! I've organized ${content.length} items in my knowledge hub.`;
+        const shareText = `Check out my BrainStack collection! I've organized ${content.length} items in my knowledge hub.`;
 
         try {
           // Check if Web Share API is available (mobile devices)
           if (navigator.share) {
             await navigator.share({ 
-              title: "My MindStack Collection",
+              title: "My BrainStack Collection",
               text: shareText,
               url: fullShareUrl,
             });

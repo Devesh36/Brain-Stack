@@ -68,7 +68,7 @@ export const SignIn = () => {
         <CardHeader>
           <CardTitle>Welcome Back</CardTitle>
           <CardDescription>
-            Sign in to access your MindStack
+            Sign in to access your BrainStack
           </CardDescription>
         </CardHeader>
         
