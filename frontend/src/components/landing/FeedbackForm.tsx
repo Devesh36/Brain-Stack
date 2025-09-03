@@ -1,4 +1,4 @@
-import { Heart } from "lucide-react";
+
 
 interface ThankYouSectionProps {
   isActive: boolean;
