@@ -4,6 +4,8 @@ A full‑stack knowledge hub for organizing and sharing notes, links and collect
 Frontend is a Vite + React + TypeScript app (BrainStack UI). Backend is an Express + TypeScript API with MongoDB (Mongoose).
 
 ---
+![HeroSection](frontend/public/landing.png)
+---
 
 ## Demo / Purpose
 
