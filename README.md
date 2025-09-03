@@ -1,4 +1,4 @@
-# Mind Stack (BrainStack)
+# BrainStack
 
 A full‑stack knowledge hub for organizing and sharing notes, links and collections.  
 Frontend is a Vite + React + TypeScript app (BrainStack UI). Backend is an Express + TypeScript API with MongoDB (Mongoose).
