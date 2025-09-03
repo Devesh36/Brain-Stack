@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, RequestHandler } from 'express';
 import userModel from '../models/user'
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -30,63 +30,49 @@ const loginSchema = z.object({
 
 
 
-export async function signup(req: Request, res: Response) {
-    console.log('Signup endpoint hit:', req.body);
-    
-    const result = signupSchema.safeParse(req.body)
-    console.log('Signup validation result:', JSON.stringify(result));
+export const signup: RequestHandler = async (req, res) => {
+  const result = signupSchema.safeParse(req.body);
 
-    if (!result.success) {
-        console.log('Signup validation failed:', result.error);
-        res.status(411).json({
-            message: "Error in inputs",
-            errors: result.error.errors
-        })
-        return
+  if (!result.success) {
+    const firstError = result.error.errors[0]?.message || "Invalid inputs";
+    res.status(400).json({ message: firstError, errors: result.error.errors });
+    return;
+  }
+
+  const { username, email, password } = result.data;
+
+  try {
+    // Check username and email separately for clear responses
+    const existingByUsername = await userModel.findOne({ username }).lean();
+    if (existingByUsername) {
+      res.status(409).json({ message: "Username already exists." });
+      return;
     }
 
-    const { username, email, password } = result.data;
-
-
-    try {
-        console.log('Starting user creation process...');
-        const hashPassword = await bcrypt.hash(password, 10)
-        console.log('Password hashed successfully');
-
-        const existingUser = await userModel.findOne({
-            username: username
-        })
-        console.log('Existing user check:', existingUser ? 'User exists' : 'User does not exist');
-
-        if (!existingUser) {
-            console.log('Creating new user...');
-            const newUser = await userModel.create({
-                username: username,
-                email: email,
-                password: hashPassword
-            })
-            console.log('User created successfully:', newUser._id);
-
-            res.status(201).json({
-                newUser,
-                message: "User created successfully"
-            });
-            return
-        }
-
-        console.log('User already exists, returning 403');
-        res.status(403).json({
-            message: "User already exists with this username"
-        })
-
-    } catch (error) {
-        console.error('Signup error:', error);
-        res.status(500).json({
-            error,
-            message: "Server Error"
-        })
+    const existingByEmail = await userModel.findOne({ email }).lean();
+    if (existingByEmail) {
+      res.status(409).json({ message: "Email already exists." });
+      return;
     }
-}
+
+    const hashed = await bcrypt.hash(password, 10);
+    const created = await userModel.create({ username, email, password: hashed });
+
+    res.status(201).json({
+      result: { id: created._id, username: created.username, email: created.email },
+      message: "Account created"
+    });
+    return;
+  } catch (err: any) {
+    // Mongo duplicate key fallback
+    if (err?.code === 11000) {
+      res.status(409).json({ message: "Email or username already exists." });
+      return;
+    }
+    console.error("Signup error:", err);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
 
 export async function login(req: Request, res: Response) {
     const result = loginSchema.safeParse(req.body)

@@ -61,23 +61,34 @@ export const SignUp = () => {
     }
 
     try {
-      const res = await axios.post(`/api/v1/auth/signup`, { 
-        email, 
-        password, 
-        username 
-      });
+      const res = await axios.post(`/api/v1/auth/signup`, { email, password, username });
 
       if (res.status === 200 || res.status === 201) {
         const successMessage = "Account created successfully! Redirecting to sign in...";
         toast.success(successMessage);
         setSuccess(successMessage);
-        setTimeout(() => {
-          navigate("/signin");
-        }, 2000);
+        setTimeout(() => navigate("/signin"), 1500);
       }
     } catch (error: unknown) {
-      const axiosError = error as { response?: { data?: { message?: string } } };
-      const errorMessage = axiosError.response?.data?.message || "Registration failed. Please try again.";
+      const axiosError = error as { response?: { status?: number; data?: any } };
+
+      // Prefer explicit server message
+      let errorMessage: string =
+        axiosError.response?.data?.message ||
+        "Registration failed. Please try again.";
+
+      // If server didn't provide a clear message, infer from status/body
+      if (!axiosError.response?.data?.message && axiosError.response?.status === 409) {
+        const respText = JSON.stringify(axiosError.response?.data || "");
+        if (/username/i.test(respText)) {
+          errorMessage = "Username already exists.";
+        } else if (/email|e11000|duplicate/i.test(respText)) {
+          errorMessage = "Email already exists.";
+        } else {
+          errorMessage = "Account already exists.";
+        }
+      }
+
       toast.error(errorMessage);
       setError(errorMessage);
     } finally {

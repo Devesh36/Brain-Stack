@@ -1,26 +1,20 @@
-import express from 'express';
-
-import { signup , login , logout, verifyAuth } from '../controllers/auth.controllers';
+import { Router } from "express";
+import { signup, login, logout, verifyAuth } from "../controllers/auth.controllers";
 import auth from '../middleware/authMiddleware';
 
-const router = express.Router();
+const router = Router();
 
 console.log('Setting up auth routes...');
 
-router.post("/signup", (req, res, next) => {
-    console.log('Signup route hit');
-    next();
-}, signup);
- 
-router.post("/login", (req, res, next) => {
-    console.log('Login route hit');
-    next();
-}, login);
+router.post("/signup", signup);
 
-router.post("/logout" , logout);
+// use controller directly for login as well
+router.post("/login", login);
+
+router.post("/logout", logout);
 
 router.get("/verify", auth, verifyAuth);
 
 console.log('Auth routes configured');
 
-export default router 
+export default router;
