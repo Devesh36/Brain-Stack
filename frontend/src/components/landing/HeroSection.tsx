@@ -15,7 +15,7 @@ export default function HeroSection({ isActive }: HeroSectionProps) {
   };
 
   return (
-    <div 
+    <div
       className="min-w-screen h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-50 to-indigo-100 relative text-center p-4 sm:p-6 md:p-8 box-border overflow-hidden"
       style={fadeInSlide}
     >
@@ -43,30 +43,31 @@ export default function HeroSection({ isActive }: HeroSectionProps) {
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
-
         <div className="absolute left-[15%] top-[25%] w-[14px] h-[14px] sm:w-[18px] sm:h-[18px] bg-gradient-to-br from-indigo-500 to-indigo-300 rounded-full opacity-70 animate-[moveObj1_2.5s_ease-in-out_infinite_alternate]" />
         <div className="absolute left-[70%] top-[60%] w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-sky-400 to-indigo-300 rounded-full opacity-60 animate-[moveObj2_2s_ease-in-out_infinite_alternate]" />
         <div className="absolute left-[80%] top-[18%] w-3 h-3 sm:w-[14px] sm:h-[14px] bg-gradient-to-br from-indigo-300 to-indigo-500 rounded-full opacity-50 animate-[moveObj3_2.8s_ease-in-out_infinite_alternate]" />
         <div className="absolute left-[30%] top-[75%] w-2 h-2 sm:w-[10px] sm:h-[10px] bg-gradient-to-br from-sky-400 to-indigo-500 rounded-full opacity-50 animate-[moveObj4_2.2s_ease-in-out_infinite_alternate]" />
       </div>
 
-      <div className="relative z-10 px-4 sm:px-6 max-w-4xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 text-slate-800 tracking-tight leading-tight">
-          Save, Organize &<br />
-          <span className="bg-gradient-to-r from-indigo-500 to-sky-400 bg-clip-text text-transparent">
-            Remember Everything
-          </span>
+      <div className="relative z-10 px-4 sm:px-6 max-w-3xl mx-auto flex flex-col items-center">
+        {/* Logo/emoji */}
+        <div className="mb-5">
+          <div className="w-20 h-20 rounded-2xl bg-[#174EA6]/10 flex items-center justify-center mx-auto">
+            <span className="text-5xl" role="img" aria-label="logo">🧠</span>
+          </div>
+        </div>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 tracking-tight leading-tight" style={{ color: '#174EA6' }}>
+          The Smarter Way to <span className="block">Save & Organize</span>
         </h1>
-        <p className="text-sm sm:text-base md:text-lg text-slate-500 max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed font-normal px-2">
-          The most elegant way to save links, videos, tweets, and notes.
-          <br className="hidden sm:block" />
-          <span className="hidden sm:inline">Your digital brain—always organized, always accessible.</span>
+        <p className="text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-8 font-normal" style={{ color: '#174EA6' }}>
+          Collect links, notes, and ideas in one place.<br className="hidden sm:block" />
+          Simple, fast, and always accessible—your digital brain for everything you want to remember.
         </p>
         <button
-          className="bg-gradient-to-r from-indigo-500 to-sky-400 text-white px-6 sm:px-7 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-bold border-0 shadow-[0_4px_16px_rgba(99,102,241,0.15)] cursor-pointer inline-flex items-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-[0_8px_24px_rgba(99,102,241,0.18)] w-auto"
-          onClick={() => navigate("/signin")}
+          className="bg-[#174EA6] hover:bg-[#123a7a] text-white px-8 py-3 rounded-xl text-lg font-bold shadow-lg transition-all duration-200 inline-flex items-center gap-2"
+          onClick={() => navigate("/signup")}
         >
-          Let's Start <ArrowRight size={18} className="sm:w-5 sm:h-5" />
+          Get Started Free <ArrowRight size={20} />
         </button>
       </div>
     </div>

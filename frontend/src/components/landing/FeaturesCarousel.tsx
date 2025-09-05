@@ -76,7 +76,7 @@ export default function FeaturesCarousel({ isActive }: FeaturesCarouselProps) {
         <div className="absolute left-[25%] top-[80%] w-[80px] h-[80px] bg-gradient-to-br from-indigo-500 to-sky-400 rounded-full opacity-[0.15] animate-[whyObj4_0.5s_ease-in-out_infinite_alternate]" />
       </div>
 
-      <h2 className="text-[42px] font-black text-slate-800 mb-10 tracking-[-1px] text-center relative z-20">
+      <h2 className="text-[42px] font-black mb-10 tracking-[-1px] text-center relative z-20" style={{ color: '#174EA6' }}>
         Why Brain Stack?
       </h2>
 
@@ -113,10 +113,10 @@ export default function FeaturesCarousel({ isActive }: FeaturesCarouselProps) {
                   >
                     {feature.icon}
                   </div>
-                  <h3 className="text-[22px] font-black text-slate-800 m-0 mb-[14px]">
+                  <h3 className="text-[22px] font-black m-0 mb-[14px]" style={{ color: '#174EA6' }}>
                     {feature.title}
                   </h3>
-                  <p className="text-slate-500 leading-relaxed m-0 text-base font-normal">
+                  <p className="leading-relaxed m-0 text-base font-normal" style={{ color: '#174EA6' }}>
                     {feature.description}
                   </p>
                 </div>
