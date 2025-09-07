@@ -97,8 +97,18 @@ export const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+  <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-200 via-white/80 to-blue-300">
       <Card className="w-full max-w-md">
+        <div className="flex justify-center pt-6">
+          <video
+            src="/Login.mp4" // Replace with your video file path
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="mb-4 w-35 h-35 object-contain bg-amber-50"
+          />
+        </div>
         <CardHeader>
           <CardTitle>Create Account</CardTitle>
           <CardDescription>
@@ -128,7 +138,7 @@ export const SignUp = () => {
                 <Input
                   id="username"
                   type="text"
-                  placeholder="Enter your username"
+                  placeholder="your_username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -142,7 +152,7 @@ export const SignUp = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="your_email@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -162,6 +172,9 @@ export const SignUp = () => {
                   required
                 />
               </div>
+               <p className="mt-2 text-xs text-slate-500">
+                  At least 6 characters, 1 uppercase, 1 number and 1 special character.
+                </p>
 
               <div>
                 <label htmlFor="confirmPassword" className="block text-sm font-medium mb-1">

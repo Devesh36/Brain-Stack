@@ -30,7 +30,7 @@ const corsOptions = {
     if (!origin) return callback(null, true);
     
     const allowedOrigins = [
-      
+      'http://localhost:5173',
       'https://brainstack.deveshrathod.me',
       'https://brain-stack-dvgb.vercel.app',
       process.env.FRONTEND_URL
